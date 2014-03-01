@@ -121,15 +121,14 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -151,13 +150,24 @@
     <Content Include="Views\Shared\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\CMS.Data\CMS.Data.csproj">
       <Project>{42352124-391d-4756-a359-4f1ea031e7f7}</Project>
       <Name>CMS.Data</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="packages.config" />
+    <ProjectReference Include="..\CMS.Entities\CMS.Entities.csproj">
+      <Project>{dce27b91-b99b-445f-bb6b-ca960262143c}</Project>
+      <Name>CMS.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CMS.Services\CMS.Services.csproj">
+      <Project>{d73ef407-0c89-4bb6-8234-e47d9faa1196}</Project>
+      <Name>CMS.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

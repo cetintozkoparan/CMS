@@ -1,5 +1,10 @@
 ﻿using CMS.Data.DBInteractions;
+using CMS.Data.EntityRepositories;
+using CMS.Entities;
+using CMS.Services;
+using CMS.Services.Interfaces;
 using CMS.Web.IoC;
+using CodeFirstServices.Services;
 using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
@@ -26,11 +31,21 @@ namespace CMS.Web
         private IUnityContainer GetUnityContainer()
         {
             //Create UnityContainer          
-            IUnityContainer container = new UnityContainer()
-            .RegisterType<IDBFactory, DBFactory>(new HttpContextLifetimeManager<IDBFactory>());
-            //.RegisterType<IUnitOfWork, UnitOfWork>(new HttpContextLifetimeManager<IUnitOfWork>())
-            //.RegisterType<IStudentService, StudentService>(new HttpContextLifetimeManager<IStudentService>());
-            //.RegisterType<IStudentRepository, StudentRepository>(new HttpContextLifetimeManager<IStudentRepository>());
+            //IUnityContainer container = new UnityContainer()
+            var container = new UnityContainer();
+            container.RegisterType<IDBFactory, DBFactory>(new HttpContextLifetimeManager<IDBFactory>());
+            container.RegisterType<IUnitOfWork, UnitOfWork>(new HttpContextLifetimeManager<IUnitOfWork>());
+            container.RegisterType<IDBFactory, DBFactory>(new HttpContextLifetimeManager<IDBFactory>());
+            container.RegisterType<ISampleService, SampleService>(new HttpContextLifetimeManager<ISampleService>());
+            container.RegisterType<ISampleService2, SampleService2>(new HttpContextLifetimeManager<ISampleService2>());
+            //container.RegisterType<typeof(IEntityRepository<>), typeof(EntityRepositoryBase<>)>(new HttpContextLifetimeManager<typeof(IEntityRepository<>)>());
+            //container.RegisterType<typeof(IEntityRepository<>), typeof(EntityRepositoryBase<>)>(new HttpContextLifetimeManager<typeof(IEntityRepository<>)>());
+            container.RegisterType(typeof(IEntityRepository<>), typeof(EntityRepositoryBase<>));
+            container.RegisterType<ISampleRepository, SampleRepository>(new HttpContextLifetimeManager<ISampleRepository>());
+            
+            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+
+            //.RegisterType<typeof(IEntityRepository<>), typeof(EntityRepositoryBase<>)>(new HttpContextLifetimeManager<typeof(IEntityRepository<>)>());
             return container;
         }
     }

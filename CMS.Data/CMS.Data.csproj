@@ -54,13 +54,19 @@
     <Compile Include="DBInteractions\IEntityRepository.cs" />
     <Compile Include="DBInteractions\IUnitOfWork.cs" />
     <Compile Include="DBInteractions\UnitOfWork.cs" />
+    <Compile Include="EntityRepositories\ISampleRepository.cs" />
+    <Compile Include="EntityRepositories\SampleRepository.cs" />
+    <Compile Include="Migrations\201402062015224_InitialMigrate.cs" />
+    <Compile Include="Migrations\201402062015224_InitialMigrate.Designer.cs">
+      <DependentUpon>201402062015224_InitialMigrate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Repositories\ISampleRepository.cs" />
-    <Compile Include="Repositories\SampleRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +75,12 @@
       <Name>CMS.Entities</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201402062015224_InitialMigrate.resx">
+      <DependentUpon>201402062015224_InitialMigrate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

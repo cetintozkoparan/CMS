@@ -28,12 +28,10 @@ public abstract class EntityRepositoryBase<T> where T : class
     public virtual void Add(T entity)
     {
         dbset.Add(entity);
-        DataContext.Commit();
     }
     public virtual void Update(T entity)
     {
         _dataContext.Entry(entity).State = EntityState.Modified;
-        DataContext.Commit();
     }
     public virtual void Delete(T entity)
     {
