@@ -12,6 +12,8 @@
 </head>
 <body>
     <div> 
+        @Html.ActionLink("Delete Dinner", MVC.Home.Index()
+        .AddRouteValues(new { foo = 17, bar = "abc"}))
         <h1>Samples</h1>
         @foreach (var item in Model)
         {

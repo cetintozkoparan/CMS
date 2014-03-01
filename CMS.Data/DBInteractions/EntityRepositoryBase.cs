@@ -8,7 +8,7 @@ namespace CMS.Data.DBInteractions
 {
 public abstract class EntityRepositoryBase<T> where T : class
 {
-    private BaseContext _dataContext;
+    private DbContext _dataContext;
     private readonly IDbSet<T> dbset;
     protected EntityRepositoryBase(IDBFactory databaseFactory)
     {
@@ -21,21 +21,24 @@ public abstract class EntityRepositoryBase<T> where T : class
         get; private set;
     }
 
-    protected BaseContext DataContext
+    protected DbContext DataContext
     {
         get { return _dataContext ?? (_dataContext = DatabaseFactory.Get()); }
     }
     public virtual void Add(T entity)
     {
         dbset.Add(entity);
+        _dataContext.SaveChanges();
     }
     public virtual void Update(T entity)
     {
         _dataContext.Entry(entity).State = EntityState.Modified;
+        _dataContext.SaveChanges();
     }
     public virtual void Delete(T entity)
     {
-        dbset.Remove(entity);           
+        dbset.Remove(entity);
+        _dataContext.SaveChanges();
     }
     public void Delete(Func<T, Boolean> where)
     {

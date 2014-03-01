@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SecondContext.cs" />
     <Compile Include="BaseContext.cs" />
     <Compile Include="DBInteractions\DBFactory.cs" />
     <Compile Include="DBInteractions\Disposable.cs" />
