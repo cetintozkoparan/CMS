@@ -5,10 +5,9 @@ namespace CMS.Web.Controllers
 {
     public partial class HomeController : Controller
     {
-        //private readonly ISampleService _sampleService;
-        public ISampleService _sampleService;
-        public ISample2Service _sample2Service;
-        public ISample3Service _sample3Service;
+        private readonly ISampleService _sampleService;
+        private readonly ISample2Service _sample2Service;
+        private readonly ISample3Service _sample3Service;
 
         public HomeController(ISampleService sampleService, ISample2Service sample2Service, ISample3Service sample3Service)
         {

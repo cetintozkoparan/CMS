@@ -3,8 +3,11 @@ using Autofac.Integration.Mvc;
 using CMS.Data.DBInteractions;
 using CMS.Services.Interfaces;
 using CMS.Web.Controllers;
+using CMS.Web.Models;
+using CMS.Web.Themes;
 using CodeFirstServices.Services;
 using System;
+using System.Configuration;
 using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -20,7 +23,8 @@ namespace CMS.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-          
+            RegisterViewEngine(ViewEngines.Engines);
+
             var builder = new ContainerBuilder();
             builder.RegisterType<HomeController>().InstancePerHttpRequest();
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
@@ -39,6 +43,20 @@ namespace CMS.Web
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container)); 
         }
 
+        public static void RegisterViewEngine(ViewEngineCollection viewEngines)
+        {
+            // mevcut engineleri temizliyoruz.
+            viewEngines.Clear();
+
+            var basePath = ConfigurationManager.AppSettings["ThemeBasePath"];
+            var themeName = ConfigurationManager.AppSettings["ThemeName"];
+
+            var theme = new Theme(basePath, themeName);
+
+            var themeableRazorViewEngine = new ThemedRazorViewEngine(theme);
+
+            viewEngines.Add(themeableRazorViewEngine);
+        }
         
     }
 }
