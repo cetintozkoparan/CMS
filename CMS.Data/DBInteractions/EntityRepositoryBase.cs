@@ -10,21 +10,16 @@ public abstract class EntityRepositoryBase<T> where T : class
 {
     private DbContext _dataContext;
     private readonly IDbSet<T> dbset;
-    protected EntityRepositoryBase(IDBFactory databaseFactory)
+    protected EntityRepositoryBase()
     {
-        DatabaseFactory = databaseFactory;
         dbset = DataContext.Set<T>();
-    }
-
-    protected IDBFactory DatabaseFactory
-    {
-        get; private set;
     }
 
     protected DbContext DataContext
     {
-        get { return _dataContext ?? (_dataContext = DatabaseFactory.Get()); }
+        get { return _dataContext ?? (_dataContext = new BaseContext()); }
     }
+
     public virtual void Add(T entity)
     {
         dbset.Add(entity);

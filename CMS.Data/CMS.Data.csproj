@@ -46,15 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SecondContext.cs" />
     <Compile Include="BaseContext.cs" />
-    <Compile Include="DBInteractions\DBFactory.cs" />
     <Compile Include="DBInteractions\Disposable.cs" />
     <Compile Include="DBInteractions\EntityRepositoryBase.cs" />
-    <Compile Include="DBInteractions\IDBFactory.cs" />
     <Compile Include="DBInteractions\IEntityRepository.cs" />
-    <Compile Include="DBInteractions\IUnitOfWork.cs" />
-    <Compile Include="DBInteractions\UnitOfWork.cs" />
     <Compile Include="EntityRepositories\ISampleRepository.cs" />
     <Compile Include="EntityRepositories\SampleRepository.cs" />
     <Compile Include="Migrations\201402062015224_InitialMigrate.cs" />

@@ -36,8 +36,8 @@ namespace CMS.Web
                  .Where(x => x.Name.EndsWith("Repository"))
                  .AsImplementedInterfaces();
 
-            builder.RegisterType<DBFactory>().As<IDBFactory>();
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
+            //builder.RegisterType<DBFactory>().As<IDBFactory>();
+            //builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
             
             var container = builder.Build(); 
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container)); 
